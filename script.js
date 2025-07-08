@@ -105,7 +105,7 @@ function reiniciarJogo() {
 }
 
 const jump = () => {
-    // Permite pular mesmo com chidori ativo, mas não conta como pulo
+    if (chidoriAtivo) return; // Impede pular com chidori ativo
     sasuke.classList.add('jump');
 
     setTimeout(() =>{
