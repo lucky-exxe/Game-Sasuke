@@ -48,62 +48,6 @@ function atualizarContador() {
         }, 5000); // Volta ao normal após 5 segundos
     }
 }
-
-// Função para mostrar o score
-function mostrarScore() {
-    finalScoreElement.textContent = score;
-    maxJumpsElement.textContent = maxJumpCount;
-    scoreModal.style.display = 'flex';
-}
-
-// Função para reiniciar o jogo
-function reiniciarJogo() {
-    // Esconde o modal
-    scoreModal.style.display = 'none';
-    
-    // Reseta as variáveis
-    jumpCount = 0;
-    maxJumpCount = 0;
-    totalPulosAcumulados = 0;
-    score = 0;
-    isGameRunning = true;
-    chidoriAtivo = false;
-    kunaiJaContada = false;
-    ultimaKunai = 0;
-    bgPosition = 900;
-    
-    // Reseta o contador na tela
-    jumpCountElement.textContent = '0';
-    
-    // Reseta o Sasuke
-    sasuke.style.display = 'block';
-    sasuke.src = './images/sasuke.gif';
-    sasuke.classList.remove('chidori-active');
-    
-    // Esconde a morte
-    sasukeMorte.style.display = 'none';
-    
-    // Reseta a kunai
-    kunai.style.animation = 'kunai_animacao 1.5s linear infinite';
-    kunai.style.left = '';
-    kunai.style.position = '';
-    
-    // Reseta as nuvens
-    nuvem.style.animation = 'nuvem_animacao 10s linear infinite';
-    nuvem.style.left = '';
-    nuvem.style.display = '';
-    
-    nuvem2.style.animation = 'nuvem_animacao2 10s linear infinite';
-    nuvem2.style.left = '';
-    nuvem2.style.display = '';
-    
-    // Retoma a animação do background
-    document.querySelector('.game').style.animationPlayState = 'running';
-    
-    // Reinicia o loop do jogo
-    startGameLoop();
-}
-
 const jump = () => {
     if (chidoriAtivo) return; // Impede pular com chidori ativo
     sasuke.classList.add('jump');
@@ -114,7 +58,14 @@ const jump = () => {
 }
 
 
-// Função para iniciar o loop do jogo
+// Função para mostrar o score
+function mostrarScore() {
+    finalScoreElement.textContent = score;
+    maxJumpsElement.textContent = maxJumpCount;
+    scoreModal.style.display = 'flex';
+
+// Função para iniciar o loop do jogo    
+}
 function startGameLoop() {
     const loop = setInterval(() => {
         if (!isGameRunning) {
@@ -219,6 +170,54 @@ function startGameLoop() {
             }, 1620); // Mostra o score 3 segundos após a morte
         }
     }, 100);
+}
+
+// Função para reiniciar o jogo
+function reiniciarJogo() {
+    // Esconde o modal
+    scoreModal.style.display = 'none';
+    
+    // Reseta as variáveis
+    jumpCount = 0;
+    maxJumpCount = 0;
+    totalPulosAcumulados = 0;
+    score = 0;
+    isGameRunning = true;
+    chidoriAtivo = false;
+    kunaiJaContada = false;
+    ultimaKunai = 0;
+    bgPosition = 900;
+    
+    // Reseta o contador na tela
+    jumpCountElement.textContent = '0';
+    
+    // Reseta o Sasuke
+    sasuke.style.display = 'block';
+    sasuke.src = './images/sasuke.gif';
+    sasuke.classList.remove('chidori-active');
+    
+    // Esconde a morte
+    sasukeMorte.style.display = 'none';
+    
+    // Reseta a kunai
+    kunai.style.animation = 'kunai_animacao 1.5s linear infinite';
+    kunai.style.left = '';
+    kunai.style.position = '';
+    
+    // Reseta as nuvens
+    nuvem.style.animation = 'nuvem_animacao 10s linear infinite';
+    nuvem.style.left = '';
+    nuvem.style.display = '';
+    
+    nuvem2.style.animation = 'nuvem_animacao2 10s linear infinite';
+    nuvem2.style.left = '';
+    nuvem2.style.display = '';
+    
+    // Retoma a animação do background
+    document.querySelector('.game').style.animationPlayState = 'running';
+    
+    // Reinicia o loop do jogo
+    startGameLoop();
 }
 
 // Inicia o loop do jogo
